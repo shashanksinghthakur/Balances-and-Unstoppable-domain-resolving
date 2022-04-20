@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
+    <script src="main.js"></script>
+    <script type="text/javascript"></script>
+    <script>
+        getHistoricaldata = async () => {
+         var str = document.getElementById("wallet-address").value
+         fetch(`https://api.covalenthq.com/v1/137/address/0x848DbDD697Ee560cbEBedbB076993F104Ca33166/portfolio_v2/3/?quote-currency=USD&format=JSON&key=ckey_7226c22e0c6a4aaba3c408e8891`)
+         .then(response => response.json())
+         .then(data => console.log(data)); 
+        }
+
+        getNftcollection = async () => {
+            const options = {method: 'GET', headers: {Accept: 'application/json'}};
+
+            fetch('https://api.opensea.io/api/v1/collections?offset=0&limit=300', options)
+            .then(response => response.json())
+            .then(response => console.log(response))
+            .catch(err => console.error(err));
+        }
+
+        getNftcollectionslug = async () => {
+            const options = {method: 'GET'};
+
+            fetch('https://api.opensea.io/api/v1/collection/doodles-official', options)
+            .then(response => response.json())
+            .then(response => console.log(response))
+            .catch(err => console.error(err));
+        }
+    </script>
+</head>
+<body>
+    <input id="wallet-address">
+    <button id="btn1" onclick="getHistoricaldata()">Historical Balances</button>
+    <button onclick="getResolve()">RESOLVE</button>
+    <button onclick="getNftcollection()">Collection</button>
+    <button onclick="getNftcollectionslug()">Collectionslug</button>
+
+    
+</body>
+</html>
